@@ -1,10 +1,5 @@
-#!/bin/bash
-echo "Please enter a string:"
-read input_string
-open_count=$(echo "$input_string" | grep -o '{' | wc -l)
-close_count=$(echo "$input_string" | grep -o '}' | wc -l)
-if [[ "$open_count" -eq "$close_count" ]]; then
-echo "True"
-else
-echo "False"
-fi
+FROM tomcat
+RUN rm -rf /usr/local/tomcat/webapps/ROOT
+COPY index.html /usr/local/tomcat/webapps/ROOT/index.html
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
